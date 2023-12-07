@@ -1,0 +1,47 @@
+//use full code in main.jsx
+
+import ReactDOM from 'react-dom/client';
+// import App from './App';
+
+let states = [];
+let stateIndex = -1;
+function useState(defaultValue) {
+  const index = ++stateIndex;
+
+  if (states[index]) return states[index];
+
+  const setValue = (newValue) => {
+    states[index][0] = newValue; //states[index][0] means defaultValue
+    renderWithMithun();
+  };
+  const returnArray = [defaultValue, setValue];
+  states[index] = returnArray;
+  return returnArray;
+}
+
+function Function() {
+  const [todo, setTodo] = useState('');
+  const [warning, setWarning] = useState('Good Choice!');
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const warningMsg = value.includes('.jsx')
+      ? 'You need clear concept of JavaScript'
+      : 'Good Choice!';
+    setTodo(value);
+    setWarning(warningMsg);
+  };
+  return (
+    <div>
+      <input type='text' value={todo} onChange={handleChange} />
+      <p>{warning}</p>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+function renderWithMithun() {
+  stateIndex = -1;
+  root.render(<Function />);
+}
+renderWithMithun();
