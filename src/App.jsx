@@ -1,10 +1,7 @@
-import Home from './Hook/UseRef/Home';
+import FetchData2 from './Hook/UseReducer/Datafetch/FetchData2';
+
 const App = () => {
-  return (
-    <div>
-      <Home />
-    </div>
-  );
+  return <FetchData2 />;
 };
 
 export default App;
